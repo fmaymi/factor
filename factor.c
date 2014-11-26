@@ -26,7 +26,14 @@ int main(int argc, char * argv[]){
 
   // let's factor this biznitch
   int counting = 2;
-  while(workingnum > 2){
+  while(workingnum > 1){
+  	while(workingnum % counting == 0){
+      workingnum = workingnum / counting;
+      struct node * addfactor = malloc(sizeof(struct node));
+      addfactor->val = counting;
+      addfactor->next = factors;
+      factors = addfactor;
+    }
     counting = next_prime(counting, primes);
     //printf("%i\n", counting); // uncomment if you want verbose
     // add it to primes
@@ -35,13 +42,6 @@ int main(int argc, char * argv[]){
     addprime->next = primes;
     primes = addprime;
     // check if it's a factor
-    if(workingnum % counting == 0){
-      workingnum = workingnum / counting;
-      struct node * addfactor = malloc(sizeof(struct node));
-      addfactor->val = counting;
-      addfactor->next = factors;
-      factors = addfactor;
-    }
   }
 
   // print factors here
